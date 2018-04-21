@@ -24,7 +24,7 @@ void setup() {
   pinMode(D1, OUTPUT); //Firebase_Com
   pinMode(D2, INPUT); //Window
   pinMode(D3, OUTPUT); //Mode_Manual-Auto
-  pinMode(D4, OUTPUT);
+  pinMode(D4, OUTPUT); //Status_Done
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
@@ -40,7 +40,7 @@ void loop() {
   //Loop
   wd = digitalRead(D2); //Read_SW
   rain = analogRead(A0); //Read_Rain_Sensor
-  firebaseCommand = Firebase.getInt("firebaseCommand");
+  firebaseCommand = Firebase.getInt("firebaseCommand"); //Get_Command_From_Firebase_WebApp
   md = Firebase.getInt("mode");
   stat = digitalRead(D4);
   Serial.print("window");
