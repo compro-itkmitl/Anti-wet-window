@@ -1,0 +1,31 @@
+body {
+	background: #ecf1f5;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+}
+
+.form{
+	font-family: 'Prompt', sans-serif;
+	font-size: 30px;
+}
+
+#head{
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 60px;
+}
+
+#btnWindow{
+	background: #2b54d0;
+	color: #fff;
+	border-radius: 5px;
+}
+#btnWindow:hover{
+	color: #fff;
+	background: #354052!important;
+	border-radius: 3px;
+}
+.rad{
+	font-family: 'Prompt', sans-serif;
+	font-size: 25px;
+}

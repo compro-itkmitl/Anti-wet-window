@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Antiwet</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Rajdhani:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Prompt:200" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+	<div id="head">Antiwet Window</div>
+	<div class="form" id="rain_status">สภาพอากาศ : กำลังโหลด...</div>
+	<br>
+	<div class="form" id="window_status">หน้าต่าง : กำลังโหลด...</div>
+	<br>
+	<button class="form" id="btnWindow">เปิด/ปิดหน้าต่าง</button>
+<!-- 	<div>
+		<label class="container">Auto
+			<input type="checkbox" checked="checked">
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container">Manual
+			<input type="checkbox">
+			<span class="checkmark"></span>
+		</label>
+	</div> -->
+<div class="rad">
+<br>Select Mode : <br>
+<label class="container">Auto
+  <input type="radio" checked="checked" name="radio" value="0">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Manual
+  <input type="radio"  name="radio" value="1">
+  <span class="checkmark"></span>
+</label>
+</div>
+
+</body>
+</html>
