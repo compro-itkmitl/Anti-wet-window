@@ -39,6 +39,7 @@ void loop() {
   Serial.println(mode);
   Serial.print("com = ");
   Serial.println(com);
+  Serial.println("===============");
 
   if(mode==0){
     if(rain_value<=500){
