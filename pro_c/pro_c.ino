@@ -2,7 +2,12 @@ int statPin = 4;
 int comPin = 5;
 int modePin = 6;
 int swtPin = 7;
+int motorPin1 = 8;  //StepMotor_28BYJ48 pin 1
+int motorPin2 = 9;  //StepMotor_28BYJ48 pin 2
+int motorPin3 = 10; //StepMotor_28BYJ48 pin 3
+int motorPin4 = 11; //StepMotor_28BYJ48 pin 4
 int speakPin = 12;
+int motorSpeed = 4;
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,6 +20,7 @@ void setup() {
   pinMode(motorPin3, OUTPUT);
   pinMode(motorPin4, OUTPUT);
   pinMode(speakPin, OUTPUT);
+  Serial.begin(115200);
   digitalWrite(statPin, LOW);
 }
 
@@ -24,10 +30,15 @@ void loop() {
   int swt = digitalRead(swtPin);
   int mode = digitalRead(modePin);
   int com = digitalRead(comPin);
+
+  Serial.print("rain_value = ");
+  Serial.println(rain_value);
+
   if(mode==0){
     if(rain_value<=500){
       if(swt==1){
-        for(int i=0;i<400;i++){
+        while (swt==1) {
+          swt = digitalRead(swtPin);
           motor();
           digitalWrite(speakPin, HIGH);
         }
@@ -38,7 +49,8 @@ void loop() {
   
   else if(mode==1){
     if(com==1&&swt==1){
-      for(int i=0;i<400;i++){
+      while (swt==1) {
+          swt = digitalRead(swtPin);
           motor();
           digitalWrite(speakPin, HIGH);
         }
@@ -55,4 +67,60 @@ void loop() {
       digitalWrite(statPin, LOW);
     }
   }
+}
+
+void motor(){
+  //StepMotor_Working_Step
+  //Step_1
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, HIGH);
+  delay(motorSpeed);
+  //Step_2
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, HIGH);
+  digitalWrite(motorPin4, HIGH);
+  delay (motorSpeed);
+  //Step_3
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, HIGH);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, LOW);
+  delay(motorSpeed);
+  //Step_4
+  digitalWrite(motorPin1, HIGH);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, LOW);
+  delay(motorSpeed);
+}
+
+void motor_re(){
+  //StepMotor_Working_Step
+ //Step_4
+  digitalWrite(motorPin1, HIGH);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, LOW);
+  delay(motorSpeed);
+  //Step_3
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, HIGH);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, LOW);
+  delay(motorSpeed);
+  //Step_2
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, HIGH);
+  digitalWrite(motorPin4, HIGH);
+  delay (motorSpeed);
+  //Step_1
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, HIGH);
+  delay(motorSpeed);
 }
