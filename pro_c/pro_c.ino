@@ -52,14 +52,13 @@ void loop() {
       while (swt==1) {
           swt = digitalRead(swtPin);
           motor();
-          digitalWrite(speakPin, HIGH);
         }
       digitalWrite(statPin, HIGH);
       delay(300);
       digitalWrite(statPin, LOW);
     }
     else if(com==1&&swt==0){
-      for(int i=0;i<400;i++){
+      for(int i=0;i<850;i++){
         motor_re();
       }
       digitalWrite(statPin, HIGH);
