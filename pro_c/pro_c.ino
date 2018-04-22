@@ -33,6 +33,12 @@ void loop() {
 
   Serial.print("rain_value = ");
   Serial.println(rain_value);
+  Serial.print("swt = ");
+  Serial.println(swt);
+  Serial.print("mode = ");
+  Serial.println(mode);
+  Serial.print("com = ");
+  Serial.println(com);
 
   if(mode==0){
     if(rain_value<=500){
@@ -50,6 +56,7 @@ void loop() {
   else if(mode==1){
     if(com==1&&swt==1){
       while (swt==1) {
+          Serial.println("Closing");
           swt = digitalRead(swtPin);
           motor();
         }
@@ -58,7 +65,9 @@ void loop() {
       digitalWrite(statPin, LOW);
     }
     else if(com==1&&swt==0){
+      
       for(int i=0;i<850;i++){
+        Serial.println("Opening");
         motor_re();
       }
       digitalWrite(statPin, HIGH);
