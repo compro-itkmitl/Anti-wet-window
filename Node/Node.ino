@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
 
-#define WIFI_SSID "sony"
-#define WIFI_PASS "88888888"
+#define WIFI_SSID "Kku"
+#define WIFI_PASS "dbbp4246"
 
 #define FIREBASE_HOST "antiwetw.firebaseio.com"
 #define FIREBASE_KEY "k1ykX4WX9Jwkgxws9kbtsZGggSgbTj19BOfflxEU"
@@ -53,38 +53,38 @@ void loop() {
   Serial.println(md);
   Serial.print("stat");
   Serial.println(stat);
-  if(stat){
+  if (stat) {
     Firebase.setInt("firebaseCommand", 0);
   }
-  if(firebaseCommand){
+  if (firebaseCommand) {
     digitalWrite(D1, HIGH);
     delay(300);
     digitalWrite(D1, LOW);
     Firebase.setInt("firebaseCommand", 0);
   }
-  else{
+  else {
     digitalWrite(D1, LOW);
   }
-  if(md){
+  if (md) {
     digitalWrite(D3, HIGH);
   }
-  else{
+  else {
     digitalWrite(D3, LOW);
   }
-  if(rain < 500){
+  if (rain < 500) {
     Firebase.setBool("rain", true);
   }
-  else{
+  else {
     Firebase.setBool("rain", false);
   }
-  if(wd){
+  if (wd) {
     Firebase.setInt("window", 0);
   }
-  else{
+  else {
     Firebase.setInt("flag", 1);
     Firebase.setInt("window", 1);
   }
-  if(md == 0 && wd==1 && chk == 0 && rain < 500){
+  if (md == 0 && wd == 1 && chk == 0 && rain < 500) {
     noti(message);
     chk = 1;
   }
@@ -95,7 +95,7 @@ void noti(String message) {
   WiFiClientSecure client;
   if (!client.connect("notify-api.line.me", 443)) {
     Serial.println("connection failed");
-    return;   
+    return;
   }
   String req = "";
   req += "POST /api/notify HTTP/1.1\r\n";
@@ -110,7 +110,7 @@ void noti(String message) {
   req += "message=" + message;
   client.print(req);
   delay(200);
-  while(client.connected()) {
+  while (client.connected()) {
     String line = client.readStringUntil('\n');
     if (line == "\r") {
       break;

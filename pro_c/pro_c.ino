@@ -1,4 +1,4 @@
-int statPin = 4; 
+int statPin = 4;
 int comPin = 5;
 int modePin = 6;
 int swtPin = 7;
@@ -41,10 +41,10 @@ void loop() {
   Serial.println(com);
   Serial.println("===============");
 
-  if(mode==0){
-    if(rain_value<=500){
-      if(swt==1){
-        while (swt==1) {
+  if (mode == 0) {
+    if (rain_value <= 500) {
+      if (swt == 1) {
+        while (swt == 1) {
           swt = digitalRead(swtPin);
           motor();
           digitalWrite(speakPin, HIGH);
@@ -53,21 +53,21 @@ void loop() {
       }
     }
   }
-  
-  else if(mode==1){
-    if(com==1&&swt==1){
-      while (swt==1) {
-          Serial.println("Closing");
-          swt = digitalRead(swtPin);
-          motor();
-        }
+
+  else if (mode == 1) {
+    if (com == 1 && swt == 1) {
+      while (swt == 1) {
+        Serial.println("Closing");
+        swt = digitalRead(swtPin);
+        motor();
+      }
       digitalWrite(statPin, HIGH);
       delay(300);
       digitalWrite(statPin, LOW);
     }
-    else if(com==1&&swt==0){
-      
-      for(int i=0;i<850;i++){
+    else if (com == 1 && swt == 0) {
+
+      for (int i = 0; i < 850; i++) {
         Serial.println("Opening");
         motor_re();
       }
@@ -78,7 +78,7 @@ void loop() {
   }
 }
 
-void motor(){
+void motor_re() {
   //StepMotor_Working_Step
   //Step_1
   digitalWrite(motorPin1, LOW);
@@ -106,9 +106,9 @@ void motor(){
   delay(motorSpeed);
 }
 
-void motor_re(){
+void motor() {
   //StepMotor_Working_Step
- //Step_4
+  //Step_4
   digitalWrite(motorPin1, HIGH);
   digitalWrite(motorPin2, LOW);
   digitalWrite(motorPin3, LOW);
